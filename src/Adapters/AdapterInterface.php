@@ -86,4 +86,11 @@ interface AdapterInterface extends DataInterface
      * @return float|null
      */
     public function getAspectRatio();
+
+    /**
+     * Gets video link
+     *
+     * @return string|null
+     */
+    public function getVideo();
 }
