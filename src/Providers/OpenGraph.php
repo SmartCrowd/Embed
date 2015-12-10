@@ -165,4 +165,13 @@ class OpenGraph extends Provider implements ProviderInterface
     {
         return $this->bag->get('published_time') ?: $this->bag->get('updated_time');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getVideo()
+    {
+        return $this->bag->get('video');
+    }
+    
 }
