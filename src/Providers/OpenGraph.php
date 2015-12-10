@@ -173,5 +173,5 @@ class OpenGraph extends Provider implements ProviderInterface
     {
         return $this->bag->get('video');
     }
-    
+
 }
