@@ -30,6 +30,7 @@ use Embed\Providers\ProviderInterface;
  * @property null|string  $providerName
  * @property null|string  $providerUrl
  * @property null|string  $publishedTime
+ * @property null|string  $video
  */
 abstract class Adapter
 {
@@ -404,6 +405,14 @@ abstract class Adapter
                 }
             }
         }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getVideo()
+    {
+        return Utils::getFirstValue(Utils::getData($this->providers, 'video', $this->request)) ?: null;
     }
 
     /**
