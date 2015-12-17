@@ -171,7 +171,7 @@ class OpenGraph extends Provider implements ProviderInterface
      */
     public function getVideo()
     {
-        return $this->bag->get('video') ?: $this->bag->get('video:iframe');
+        return $this->bag->get('video:iframe') ?: $this->bag->get('video');
     }
 
 }
