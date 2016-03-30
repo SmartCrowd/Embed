@@ -9,7 +9,7 @@ class SpotifyTest extends TestCaseBase
             [
                 'title' => 'Zhu - Faded',
                 'type' => 'rich',
-                'code' => '<iframe src="https://embed.spotify.com/?uri=spotify:track:7nDQMtLxu94xtlTR8bEqjU" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>',
+                'code' => '<iframe src="https://embed.spotify.com/?uri=spotify:track:2GQEM9JuHu30sGFvRYeCxz" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>',
                 'providerName' => 'Spotify',
                 'providerUrl' => 'https://www.spotify.com',
             ]

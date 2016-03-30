@@ -192,6 +192,8 @@ class Request extends Url
                 $errors = libxml_use_internal_errors(true);
                 $this->htmlContent = new \DOMDocument();
 
+                $content = $this->fixEncoding($content);
+
                 if ((mb_detect_encoding($content) === 'UTF-8') && mb_check_encoding($content, 'UTF-8')) {
                     $content = mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8');
                     $content = preg_replace('/<head[^>]*>/', '<head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">', $content);
@@ -266,5 +268,18 @@ class Request extends Url
         }
 
         return in_array($this->getHttpCode(), $validCodes, true);
+    }
+
+    public function fixEncoding($content) {
+        preg_match('~meta charset="?\'?([-a-z0-9_]+)"/\'?~i', $content, $charset);
+        $charset = isset($charset[1]) ? $charset[1] : $charset;
+        $list_encodings = mb_list_encodings();
+        foreach ($list_encodings as $encoding) {
+            if (!empty($charset) && stripos($encoding, (string) $charset) !== false) {
+                $content = mb_convert_encoding($content, 'UTF-8', $charset);
+            }
+        }
+
+        return $content;
     }
 }

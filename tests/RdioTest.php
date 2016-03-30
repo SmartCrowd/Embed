@@ -7,10 +7,10 @@ class RdioTest extends TestCaseBase
         $this->assertEmbed(
             'http://www.rdio.com/artist/Various_Artists/album/50_Dance_Hits_2015/',
             [
-                'title' => '50 Dance Hits 2015',
-                'imageWidth' => 400,
-                'imageHeight' => 400,
-                'type' => 'rich',
+                'title' => 'Farewell Rdio',
+                'imageWidth' => 1200,
+                'imageHeight' => 630,
+                'type' => 'link',
             ]
         );
     }
