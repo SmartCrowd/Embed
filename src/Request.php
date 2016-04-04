@@ -194,10 +194,8 @@ class Request extends Url
 
                 $content = $this->fixEncoding($content);
 
-                if ((mb_detect_encoding($content) === 'UTF-8') && mb_check_encoding($content, 'UTF-8')) {
-                    $content = mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8');
-                    $content = preg_replace('/<head[^>]*>/', '<head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">', $content);
-                }
+                $content = mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8');
+                $content = preg_replace('/<head[^>]*>/', '<head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">', $content);
 
                 $this->htmlContent->loadHTML($content);
                 libxml_use_internal_errors($errors);
@@ -270,7 +268,12 @@ class Request extends Url
         return in_array($this->getHttpCode(), $validCodes, true);
     }
 
-    public function fixEncoding($content) {
+    /**
+     * @param $content
+     * @return mixed
+     */
+    public function fixEncoding($content)
+    {
         preg_match('~meta charset="?\'?([-a-z0-9_]+)"/\'?~i', $content, $charset);
         $charset = isset($charset[1]) ? $charset[1] : $charset;
         $list_encodings = mb_list_encodings();
@@ -282,4 +285,5 @@ class Request extends Url
 
         return $content;
     }
+    
 }
